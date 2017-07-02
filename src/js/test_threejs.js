@@ -1,41 +1,83 @@
-'use strict';
+;(function(win, doc, THREE) {
+    "use strict";
 
-var camera, scene, renderer;
-var geometry, material, mesh;
+    win.testController = win.testController || (function() {
 
-function init() {
+        var DOM = {
+            //
+        },
+        MODEL = {
+            camera:     null,
+            scene:      null,
+            renderer:   null,
+            geometry:   null,
+            material:   null,
+            mesh:       null
+        },
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
+        Init = function() {
+            MODEL.camera = new THREE.PerspectiveCamera(25, win.innerWidth / win.innerHeight, 1, 10000);
+            MODEL.camera.position.z = 1000;
 
-    scene = new THREE.Scene();
+            MODEL.geometry = new THREE.BoxGeometry(200, 200, 200);
+            MODEL.material = new THREE.MeshBasicMaterial({
+                color: 0x00ff00,
+                wireframe: true
+            });
 
-    geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
-        wireframe: true
-    });
+            MODEL.mesh = new THREE.Mesh(MODEL.geometry, MODEL.material);
 
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+            MODEL.scene = new THREE.Scene();
+            MODEL.scene.add(MODEL.mesh);
 
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+            MODEL.renderer = new THREE.WebGLRenderer();
+            MODEL.renderer.setSize(win.innerWidth, win.innerHeight);
 
-    document.body.appendChild(renderer.domElement);
+            doc.body.appendChild(MODEL.renderer.domElement);
 
-}
+            this.animate();
+        },
 
-function animate() {
+        prot = {
 
-    requestAnimationFrame(animate);
+            /**
+             * Starts the scene animation.
+             * @private
+             */
+            animate: function() {
+                requestAnimationFrame(prot.animate);
 
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+                MODEL.mesh.rotation.x += 0.01;
+                MODEL.mesh.rotation.y += 0.02;
 
-    renderer.render(scene, camera);
+                MODEL.renderer.render(MODEL.scene, MODEL.camera);
+            },
 
-}
 
-init();
-animate();
+            /**
+             *  entry point
+             *  @public
+             */
+            standUp: function() {
+                return new Init();
+            }
+
+        };
+        
+        Init.prototype = prot;
+
+
+        // Public Interface
+        return {
+            standUp: prot.standUp
+        };
+
+
+    })();
+
+
+    doc.addEventListener("DOMContentLoaded", function() {
+        win.testController.standUp();
+    }, true);
+
+})(window, document, THREE);
