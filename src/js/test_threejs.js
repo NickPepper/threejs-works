@@ -1,4 +1,4 @@
-;(function(win, doc, THREE) {
+;(function(win, doc, THREE, Detector) {
     "use strict";
 
     win.testController = win.testController || (function() {
@@ -16,36 +16,42 @@
         },
 
         Init = function() {
-            MODEL.camera = new THREE.PerspectiveCamera(25, win.innerWidth / win.innerHeight, 1, 10000);
-            MODEL.camera.position.z = 1000;
+            if (Detector.webgl) {
 
-            MODEL.geometry = new THREE.BoxGeometry(200, 200, 200);
-            MODEL.material = new THREE.MeshBasicMaterial({
-                color: 0x00ff00,
-                wireframe: true
-            });
+                MODEL.camera = new THREE.PerspectiveCamera(25, win.innerWidth / win.innerHeight, 1, 10000);
+                MODEL.camera.position.z = 1000;
 
-            MODEL.mesh = new THREE.Mesh(MODEL.geometry, MODEL.material);
+                MODEL.geometry = new THREE.BoxGeometry(200, 200, 200);
+                MODEL.material = new THREE.MeshBasicMaterial({
+                    color: 0x00ff00,
+                    wireframe: true
+                });
 
-            MODEL.scene = new THREE.Scene();
-            MODEL.scene.add(MODEL.mesh);
+                MODEL.mesh = new THREE.Mesh(MODEL.geometry, MODEL.material);
 
-            MODEL.renderer = new THREE.WebGLRenderer();
-            MODEL.renderer.setSize(win.innerWidth, win.innerHeight);
+                MODEL.scene = new THREE.Scene();
+                MODEL.scene.add(MODEL.mesh);
 
-            doc.body.appendChild(MODEL.renderer.domElement);
+                MODEL.renderer = new THREE.WebGLRenderer();
+                MODEL.renderer.setSize(win.innerWidth, win.innerHeight);
 
-            this.animate();
+                doc.body.appendChild(MODEL.renderer.domElement);
+
+                this.animate();
+
+            } else {
+                doc.body.appendChild(Detector.getWebGLErrorMessage());
+            }
         },
 
         prot = {
 
             /**
-             * Starts the scene animation.
+             * A loop that causes the renderer to draw the scene at 60 FPS.
              * @private
              */
             animate: function() {
-                requestAnimationFrame(prot.animate);
+                win.requestAnimationFrame(prot.animate);
 
                 MODEL.mesh.rotation.x += 0.01;
                 MODEL.mesh.rotation.y += 0.02;
@@ -80,4 +86,4 @@
         win.testController.standUp();
     }, true);
 
-})(window, document, THREE);
+})(window, document, THREE, Detector);

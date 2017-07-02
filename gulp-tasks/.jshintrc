@@ -13,7 +13,8 @@
 
 
     "globals"       : {  // Custom globals
-        "THREE"         : false
+        "THREE"         : false,
+        "Detector"      : false
     },
 
 
