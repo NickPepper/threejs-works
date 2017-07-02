@@ -1,0 +1,84 @@
+{
+    // Common Settings
+    "passfail"      : false,  // Stop on first error
+    "maxerr"        : 30,    // Maximum error before stopping
+
+
+    // Environments
+    "browser"       : true,   // Standard browser globals e.g. `window`, `document`
+    "node"          : [],   // defines globals available when the code is running inside of the `Node` runtime environment
+    "nonstandard"   : [],   // defines non-standard but widely adopted globals such as `escape` and `unescape`
+    "typed"         : [],   // defines globals for typed array constructors (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)
+    "worker"        : [],   // defines globals available when the code is running inside of a Web Worker
+
+
+    "globals"       : {  // Custom globals
+        "THREE"         : false
+    },
+
+
+    // Development
+    "debug"         : false,  // Suppress warnings about the debugger statements e.g. browser breakpoints
+    "devel"         : true,   // Allow developments statements e.g. `console.log();`
+
+
+    // ECMAScript
+    "esversion"     : 6,      // 3 == Internet Explorer 6/7/8/9 and other oldies; 5 == ECMAScript 5.1; 6 == ECMAScript 6
+    "globalstrict"  : false,  // Allow global "use strict" (also enables 'strict')
+    "module"        : false,  // The input code describes an ECMAScript 6 module. All module code is interpreted as strict mode code.
+    "strict"        : true,   // Require `use strict` pragma in every file
+
+
+    // The Good Parts
+    "asi"           : false,  // Suppresses warnings about missing semicolons 
+    "bitwise"       : false,  // Prohibit bitwise operators (&, |, ^, etc.)
+    "boss"          : false,  // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments
+    "curly"         : true,   // Require {} for every new block or scope
+    "elision"       : true,   // This option tells JSHint that your code uses ES3 array elision elements, or empty elements (for example, [1, , , 4, , , 7])
+    "eqeqeq"        : true,   // This options prohibits the use of == and != in favor of === and !==
+    "eqnull"        : false,  // Suppresses warnings about == null comparisons. Such comparisons are often useful when you want to check if a variable is null or undefined
+    "evil"          : false,  // Tolerate use of `eval`
+    "expr"          : false,  // Suppresses warnings about the use of expressions where normally you would expect to see assignments or function calls. Most of the time, such code is a typo
+    "forin"         : false,  // Tolerate `for in` loops without `hasOwnPrototype`
+    "freeze"        : true,   // Prohibits overwriting prototypes of native objects such as Array, Date and so on
+    "funcscope"     : false,  // Suppresses warnings about declaring variables inside of control structures while accessing them later from the outside
+    "futurehostile" : true,   // Enables warnings about the use of identifiers which are defined in future versions of JavaScript
+    "iterator"      : false,  // Suppresses warnings about the __iterator__ property which is not supported by all browsers
+    "lastsemic"     : false,  // Suppresses warnings about missing semicolons, but only when the semicolon is omitted for the last statement in a one-line block: `var name = (function() { return 'Anton' }());`
+    "latedef"       : true,   // Prohipit variable use before definition
+    "loopfunc"      : false,  // Allows functions to be defined within loops
+    "maxcomplexity" : 20,     // This option lets you control cyclomatic complexity throughout your code. Cyclomatic complexity measures the number of linearly independent paths through a program's source code. Read more about cyclomatic complexity on Wikipedia.
+    "maxdepth"      : 5,      // Controls how nested do you want your blocks to be
+    "maxparams"     : 6,      // The max number of formal parameters allowed per function
+    "maxstatements" : 35,     // The max number of statements allowed per function
+    "noarg"         : true,   // Prohibit use of `arguments.caller` and `arguments.callee`
+    "nocomma"       : false,  // Prohibits the use of the comma operator
+    "noempty"       : true,   // Prohibits use of empty blocks
+    "nomen"         : true,   // Prohibits use of initial or trailing underbars in names
+    "nonbsp"        : true,   // Warns about "non-breaking whitespace" characters. These characters can be entered with option-space on Mac computers and have a potential of breaking non-UTF8 web pages
+    "nonew"         : true,   // Prohibits the function calls like `new MyConstructor();`
+    "notypeof"      : false,  // Suppresses warnings about invalid typeof operator values
+    "noyield"       : false,  // Suppresses warnings about generator functions with no `yield` statement in them
+    "onevar"        : false,  // Allows only one `var` statement per function
+    "plusplus"      : false,  // Prohibits the use of unary increment and decrement operators
+    "proto"         : false,  // Suppresses warnings about the `__proto__` property
+    ////"regexp"        : true,   // Prohibit `.` and `[^...]` in regular expressions
+    ////"regexdash"     : false,  // Tolerate unescaped last dash i.e. `[-...]`
+    "scripturl"     : false,   // Suppresses warnings about the use of script-targeted URLs—such as `javascript:...`
+    "shadow"        : false,  // Allows re-define variables later in code e.g. `var x=1; x=2;`
+    "singleGroups"  : true,   // Prohibits the use of the grouping operator when it is not strictly required
+    "supernew"      : false,  // Suppresses warnings about "weird" constructions like `new function () { ... }` and `new Object;`. Such constructions are sometimes used to produce singletons in JavaScript
+    "trailing"      : true,   // Prohibits trailing whitespaces
+    "undef"         : true,   // Require all non-global variables be declared before they are used
+    "unused"        : true,   // Warns when the variables are defined and never used
+    "validthis"     : true,   // Suppresses warnings about possible strict violations when the code is running in strict mode and you use this in a non-constructor function. You should use this option—in a function scope only—when you are positive that your use of this is valid in the strict mode (for example, if you call your function using Function.call). Note: This option can be used only inside of a function scope. JSHint will fail with an error if you will try to set this option globally.
+    "varstmt"       : false,  // Prohibits the usage of VariableStatements in favor of `let` or `const`
+    "white"         : false,  // Check against strict whitespace and indentation rules
+    "withstmt"      : false,  // Suppresses warnings about the use of the with statement. The semantics of the with statement can cause confusion among developers and accidental definition of global variables
+
+
+    // DEPRECATED
+    "newcap"        : true,   // Require capitalization of all constructor functions e.g. `new F()`
+    "sub"           : false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`
+    "indent"        : 2       // Specify indentation spacing
+}
