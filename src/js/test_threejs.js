@@ -19,9 +19,12 @@
             if (Detector.webgl) {
 
                 MODEL.camera = new THREE.PerspectiveCamera(25, win.innerWidth / win.innerHeight, 1, 10000);
-                MODEL.camera.position.z = 1000;
+                MODEL.camera.position.z = 100; // set it to 1000 for BoxGeometry
 
-                MODEL.geometry = new THREE.BoxGeometry(200, 200, 200);
+                //MODEL.geometry = new THREE.BoxGeometry(200, 200, 200);
+                //MODEL.geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+                MODEL.geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+
                 MODEL.material = new THREE.MeshBasicMaterial({
                     color: 0x00ff00,
                     wireframe: true
